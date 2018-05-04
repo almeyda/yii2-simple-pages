@@ -1,0 +1,29 @@
+{
+	"name": "almeyda/yii2-emcms",
+	"description": "basic yii2 content management extension to create simple sites",
+	"keywords": [
+		"yii2",
+		"yii2-cms",
+		"content management"
+	],
+	"type": "yii2-extension",
+	"homepage": "https://almeyda.repositoryhosting.com/git/almeyda/emcms.git",
+	"license": "BSD-3-Clause",
+	"authors": [{
+			"name": "Dmitriy Evdokimov",
+			"email": "dmitriy@almeydahost.com",
+			"homepage": "http://almeydahost.com",
+			"role": "Developer"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.5.0",
+		"yiisoft/yii2": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"almeyda\\emcms\\": ""
+		}
+	}
+}
