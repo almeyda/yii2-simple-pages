@@ -1,5 +1,5 @@
 {
-	"name": "almeyda/yii2-emcms",
+	"name": "deitsolutions/yii2-simple-pages",
 	"description": "basic yii2 content management extension to create simple sites",
 	"keywords": [
 		"yii2",
@@ -7,7 +7,7 @@
 		"content management"
 	],
 	"type": "yii2-extension",
-	"homepage": "https://almeyda.repositoryhosting.com/git/almeyda/emcms.git",
+	"homepage": "https://github.com/deitsolutions/yii2-simple-pages.git",
 	"license": "BSD-3-Clause",
 	"authors": [{
 			"name": "Dmitriy Evdokimov",
