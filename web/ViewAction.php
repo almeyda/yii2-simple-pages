@@ -1,18 +1,31 @@
 <?php
+/**
+ * @link https://github.com/deitsolutions/yii2-simple-pages
+ * @copyright Copyright (c) 2018 Almeyda LLC
+ *
+ * The full copyright and license information is stored in the LICENSE file distributed with this source code.
+ */
 
-namespace almeyda\emcms\web;
+namespace deitsolutions\pages\web;
 
 use Yii;
 use yii\web\ViewAction as Action;
 use yii\web\NotFoundHttpException;
 
+
+/**
+ * {@inheritdoc}
+ */
 class ViewAction extends Action
 {
     /**
      * @var string the name of the GET parameter that contains the requested theme name.
      */
-    public $themeParam = 'theme';
-    
+    public $themeParam = 'common';
+
+    /**
+     * {@inheritdoc}
+     */
     public function run()
     {
         try {
@@ -21,29 +34,26 @@ class ViewAction extends Action
             if (YII_DEBUG) {
                 throw new NotFoundHttpException($e->getMessage());
             } else {
-                throw new NotFoundHttpException(
-                    Yii::t('yii', 'Page not found.')
-                );
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
         }
 
         return $output;
     }
-    
+
     /**
-     * @inheritdoc
+     * Adds prefix of 'themeParam' to view name resolved
+     * {@inheritdoc}
      */
     protected function resolveViewName()
     {
-        $viewNameResolved = parent::resolveViewName();
-        $viewName = Yii::$app->request->get($this->viewParam, $this->defaultView);
-        
+
         if (Yii::$app->request->get($this->themeParam)) {
-            $viewNameResolved = str_replace($viewName, Yii::$app->request->get($this->themeParam) . '/' . $viewName, $viewNameResolved);
+            $this->viewParam = Yii::$app->request->get($this->themeParam) . '/' . $this->viewParam;
+            $this->defaultView = Yii::$app->request->get($this->themeParam) . '/' . $this->defaultView;
         }
 
-
-        return $viewNameResolved;
+        return parent::resolveViewName();
     }
 
 }

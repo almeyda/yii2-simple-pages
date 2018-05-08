@@ -1,6 +1,13 @@
 <?php
+/**
+ * @link https://github.com/deitsolutions/yii2-simple-pages
+ * @copyright Copyright (c) 2018 Almeyda LLC
+ *
+ * The full copyright and license information is stored the LICENSE
+ * file distributed with this source code.
+ */
 
-namespace almeyda\emcms\web;
+namespace deitsolutions\pages\web;
 
 use yii\web\AssetBundle;
 

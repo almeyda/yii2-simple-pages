@@ -1,6 +1,6 @@
-The Yii Emcms Module is free software. It is released under the terms of the following BSD License.
+The Simple Pages Module is free software. It is released under the terms of the following BSD License.
 
-Copyright © 2017 by Almeyda LLC (http://almeyda.biz)
+Copyright © 2018 by Almeyda LLC (http://almeyda.biz)
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

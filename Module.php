@@ -1,20 +1,18 @@
 <?php
+/**
+ * @link https://github.com/deitsolutions/yii2-simple-pages
+ * @copyright Copyright (c) 2018 Almeyda LLC
+ *
+ * The full copyright and license information is stored in the LICENSE file distributed with this source code.
+ */
 
-namespace almeyda\emcms;
+namespace deitsolutions\pages;
 
 /**
- * The Emcms Module provides content rendering functionality
+ * This Module provides basic page content rendering functionality
  *
  */
 class Module extends \yii\base\Module
 {
-	public $cacheFiles = false;
-    
-	/**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-	}
+
 }

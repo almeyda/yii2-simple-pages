@@ -1,7 +1,7 @@
-Emcms Module
+Simple Pages Module
 ============
 
-Emcms Module is a simple client-side CMS module for Yii2. 
+Simple Pages Module is a simple client-side CMS module for Yii2. 
 
 ## Installation
 
@@ -10,7 +10,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Place **composer.phar** file in the same directory with **composer.json** file and run
 
 ```
-$ php composer.phar require almeyda/yii2-emcms "dev-master"
+$ php composer.phar require deitsolutions/yii2-simple-pages "*"
 ```
 
 or add
@@ -20,7 +20,7 @@ or add
     ...
     "require": {
         ...
-        "almeyda/yii2-emcms": "dev-master"
+        "deitsolutions/yii2-simple-pages": "*"
         ...
     }
     ...
@@ -33,7 +33,7 @@ to the *"require"* section of your `composer.json` file and run
 $ php composer.phar update
 ```
 
-## Configuration
+## Configuration 
 
 Once the extension is installed, modify your application configuration to include:
 
@@ -42,8 +42,8 @@ return [
     ...
     'modules' => [
         ...
-        'emcms' => [
-           'class' => 'almeyda\emcms\Module',
+        'pages' => [
+           'class' => 'almeyda\pages\Module',
         ],
         ...
     ],
@@ -56,11 +56,11 @@ return [
                 ...
                 ...
                 ...
-                'emcms" =>  [
-                        'pattern' => '<view>',
-                        'route' => 'emcms/page/page',
+                'pages' =>  [
+                        'pattern' => 'blog/<view>',
+                        'route' => 'pages/page/page',
                         'defaults' => ['view' => 'index'],
-                        'suffix' => '.ihtml'
+                        'suffix' => '.html'
                 ],
                 ...
             ]
@@ -70,8 +70,8 @@ return [
             ...
             'theme' => [
                 'pathMap' => [
-                    '@app/views/layouts' => '@app/views/themes/{your-theme}/blog/layouts',
-                    '@almeyda/emcms/views/page/pages/blog' => '@app/views/themes/{your-theme}/blog/pages',
+                    '@app/views/layouts' => '@app/views/themes/{your-theme}/layouts',
+                    '@deitsolutions/pages/views/page/pages/blog' => '@app/views/themes/{your-theme}/pages',
                     ...
             ],
             ...
@@ -81,32 +81,32 @@ return [
 ]
 ];
 ```
-We use example with 'blog' above.
-Please note that rule 'emcms' should be added at the end of the rules stack. Otherwise all simple requests will be processed by the emcms module.
 
-## Usage
+## Usage example
 
-Create your index.php page in /views/themes/{your-theme}/blog/pages and add your pages with articles to this folder (like post1.php, post2.php, ...)
+We build a very simple blog with common layout, list of posts at the index.php page and articles (like post1.php, post2.php, ...)
+We use example with 'blog' based on Yii2 path map feature. Please note that rule 'pages' should be added at the end of the rules stack. Otherwise all simple requests will be processed by the 'pages' module.
 
-##Examples
+
 ###Structure of the folders:
 
 ```
-views/                                       (folder) main folder in the root of your site
-  └─themes/                               (folder) folder with list of themes
-      └─{your-theme}/                (folder) with the name of your theme
-              └─blog/                        (folder) - blog - name of folder according to the pathMap in config 
-                    ├─layout/               (folder) - layout - name of the layout used for blog  accordith to the pathMap in Config
-                    │    └main.php       (file) -   file with html/php for the layout         
-                    └─pages/                (folder) - folder page accopding to the pathMap in Config 
-                        ├─ index.php      (file) - file with the list of posts
-                        ├─ post1.php      (file) - file with the content of 1st post 
-                        └─ post2.php      (file) - file with the content of 2nd post
+views/                          (folder) basic yii2 project views folder
+    └─themes/                   (folder) folder with the list of themes
+        └─{your-theme}/         (folder) your theme
+            ├─layout/           (folder) layouts used for blog
+            │   └main.php       (file) layout html/php
+            └─pages/            (folder) views used for blog 
+                ├─ index.php    (file) file with the list of posts
+                ├─ post1.php    (file) file with some content of the 1st post 
+                └─ post2.php    (file) file with some content of the 2nd post
 ```               
 
 ### File examples
 
 **[main.php]**
+
+layout used
 
 ```php
 <?php
@@ -118,7 +118,7 @@ BootstrapAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
+    <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -224,15 +224,15 @@ foreach ($provider->getModels() as $post) : ?>
 
 ### URLs examples
 
-* Index page: `yourhost`
+* Your site index page: `yourhost`
 * Blog page: `yourhost/blog`
 * Blog page for 1st post: `yourhost/blog/post1.html`
 * Blog page for 2st post: `yourhost/blog/post2.html`
 
 ### An example of creating a solitary new page
 
-If you want to create page with address `yourhost/faq`  you could follow the next guide:
-1. Change component section in the config file:
+You could follow the next guide if you want to create page with address `yourhost/faq` with standard layout:
+1. Ensure correct theme 'pathMap' used for component section of the config file:
 
 ```
 'components' => [
@@ -241,7 +241,6 @@ If you want to create page with address `yourhost/faq`  you could follow the nex
         ...
         'theme' => [
             'pathMap' => [
-                '@app/views/layouts' => '@app/views/themes/{your-theme}/common/layouts',
                 '@almeyda/emcms/views/page/pages' => '@app/views/themes/{your-theme}/common/pages',
                 ...
         ],
@@ -253,9 +252,10 @@ If you want to create page with address `yourhost/faq`  you could follow the nex
 2. create the new file `/views/themes/{your-theme}/common/pages/faq.php`;
 3. open the address `yourhost/faq`;
 
+### theme parameter
+
+Theme parameter could be varied to enable different themes for the views
+
 ## License
 
 Please take a look on the bundled [LICENSE.md](LICENSE.md) for details.
-
-
-

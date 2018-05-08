@@ -1,18 +1,17 @@
 {
 	"name": "deitsolutions/yii2-simple-pages",
-	"description": "basic yii2 content management extension to create simple sites",
+	"description": "basic yii2 extension to create sites with simple set of pages",
 	"keywords": [
 		"yii2",
-		"yii2-cms",
-		"content management"
+		"page"
 	],
 	"type": "yii2-extension",
-	"homepage": "https://github.com/deitsolutions/yii2-simple-pages.git",
+	"homepage": "https://github.com/deitsolutions/yii2-simple-pages",
 	"license": "BSD-3-Clause",
 	"authors": [{
 			"name": "Dmitriy Evdokimov",
-			"email": "dmitriy@almeydahost.com",
-			"homepage": "http://almeydahost.com",
+		"email": "dmitriy@deitsolutions.com",
+		"homepage": "http://almeyda.biz",
 			"role": "Developer"
 		}
 	],
@@ -23,7 +22,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"almeyda\\emcms\\": ""
+			"deitsolutions\\pages\\": ""
 		}
 	}
 }
