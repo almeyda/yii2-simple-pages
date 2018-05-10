@@ -25,7 +25,7 @@ class PageController extends Controller
     {
         return [
             'page' => [
-                'class' => 'almeyda\pages\web\ViewAction',
+                'class' => 'deitsolutions\pages\web\ViewAction',
             ],
         ];
     }
