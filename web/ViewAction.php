@@ -21,7 +21,7 @@ class ViewAction extends Action
     /**
      * @var string the name of the GET parameter that contains the requested theme name.
      */
-    public $themeParam = 'common';
+    public $themeParam = 'theme';
 
     /**
      * {@inheritdoc}
