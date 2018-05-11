@@ -47,12 +47,16 @@ class ViewAction extends Action
      */
     protected function resolveViewName()
     {
-
         if (Yii::$app->request->get($this->themeParam)) {
-            $this->viewParam = Yii::$app->request->get($this->themeParam) . '/' . $this->viewParam;
-            $this->defaultView = Yii::$app->request->get($this->themeParam) . '/' . $this->defaultView;
+            if (Yii::$app->request->get($this->viewParam) != $this->defaultView) {
+                $queryParams = Yii::$app->request->getQueryParams();
+                $queryParams[$this->viewParam] = Yii::$app->request->get($this->themeParam) . '/' . Yii::$app->request->get($this->viewParam);
+                Yii::$app->request->setQueryParams($queryParams);
+            } else {
+                $this->viewParam = Yii::$app->request->get($this->themeParam) . '/' . $this->viewParam;
+                $this->defaultView = Yii::$app->request->get($this->themeParam) . '/' . $this->defaultView;
+            }
         }
-
         return parent::resolveViewName();
     }
 
