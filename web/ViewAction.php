@@ -22,42 +22,31 @@ class ViewAction extends Action
      * @var string the name of the GET parameter that contains the requested theme name.
      */
     public $themeParam = 'theme';
-
+    
     /**
-     * {@inheritdoc}
-     */
-    public function run()
-    {
-        try {
-            $output = parent::run();
-        } catch (NotFoundHttpException $e) {
-            if (YII_DEBUG) {
-                throw new NotFoundHttpException($e->getMessage());
-            } else {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
-        }
-
-        return $output;
-    }
-
-    /**
-     * Adds prefix of 'themeParam' to view name resolved
-     * {@inheritdoc}
+     * Resolves the view name currently being requested.
+     * Parameter with the name 'themeParam' could be sent to form the url. This case its value added as a prefix to view name resolved
+     *
+     * @return string the resolved view name
+     * @throws NotFoundHttpException if the specified view name is invalid
      */
     protected function resolveViewName()
     {
+        $viewName = Yii::$app->request->get($this->viewParam, $this->defaultView);
+    
         if (Yii::$app->request->get($this->themeParam)) {
-            if (Yii::$app->request->get($this->viewParam) != $this->defaultView) {
-                $queryParams = Yii::$app->request->getQueryParams();
-                $queryParams[$this->viewParam] = Yii::$app->request->get($this->themeParam) . '/' . Yii::$app->request->get($this->viewParam);
-                Yii::$app->request->setQueryParams($queryParams);
-            } else {
-                $this->viewParam = Yii::$app->request->get($this->themeParam) . '/' . $this->viewParam;
-                $this->defaultView = Yii::$app->request->get($this->themeParam) . '/' . $this->defaultView;
-            }
+            $viewName = Yii::$app->request->get($this->themeParam) . '/' . $viewName;
         }
-        return parent::resolveViewName();
+    
+        if (!is_string($viewName) || !preg_match('~^\w(?:(?!\/\.{0,2}\/)[\w\/\-\.])*$~', $viewName)) {
+            if (YII_DEBUG) {
+                throw new NotFoundHttpException("The requested view \"$viewName\" must start with a word character, must not contain /../ or /./, can contain only word characters, forward slashes, dots and dashes.");
+            }
+        
+            throw new NotFoundHttpException(Yii::t('yii', 'The requested route "{name}" was not found.', ['name' => $viewName]));
+        }
+    
+        return empty($this->viewPrefix) ? $viewName : $this->viewPrefix . '/' . $viewName;
     }
-
+    
 }
