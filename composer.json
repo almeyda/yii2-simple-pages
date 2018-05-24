@@ -1,28 +1,29 @@
 {
-	"name": "deitsolutions/yii2-simple-pages",
-	"description": "basic yii2 extension to create sites with simple set of pages",
-	"keywords": [
-		"yii2",
-		"page"
-	],
-	"type": "yii2-extension",
-	"homepage": "https://github.com/deitsolutions/yii2-simple-pages",
-	"license": "BSD-3-Clause",
-	"authors": [{
-			"name": "Dmitriy Evdokimov",
-		"email": "dmitriy@deitsolutions.com",
-		"homepage": "http://almeyda.biz",
-			"role": "Developer"
-		}
-	],
-	"minimum-stability": "dev",
-	"require": {
-		"php": ">=5.5.0",
-		"yiisoft/yii2": "*"
-	},
-	"autoload": {
-		"psr-4": {
-			"deitsolutions\\pages\\": ""
-		}
-	}
+    "name": "deitsolutions/yii2-simple-pages",
+    "description": "basic yii2 extension to create sites with simple set of pages",
+    "keywords": [
+        "yii2",
+        "page"
+    ],
+    "type": "yii2-extension",
+    "homepage": "https://github.com/deitsolutions/yii2-simple-pages",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Dmitriy Evdokimov",
+            "email": "dmitriy@deitsolutions.com",
+            "homepage": "http://almeyda.biz",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "deitsolutions\\pages\\": ""
+        }
+    }
 }
