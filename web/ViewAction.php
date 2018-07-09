@@ -8,7 +8,6 @@
 
 namespace deitsolutions\pages\web;
 
-use Yii;
 use yii\web\ViewAction as Action;
 use yii\web\NotFoundHttpException;
 
@@ -19,9 +18,14 @@ use yii\web\NotFoundHttpException;
 class ViewAction extends Action
 {
     /**
-     * @var string the name of the GET parameter that contains the requested theme name.
+     * @var string the name of the GET parameter that contains the requested theme name
      */
     public $themeParam = 'theme';
+
+    /**
+     * @var string theme name used
+     */
+    public $theme = '';
     
     /**
      * Resolves the view name currently being requested.
@@ -32,18 +36,19 @@ class ViewAction extends Action
      */
     protected function resolveViewName()
     {
-        $viewName = Yii::$app->request->get($this->viewParam, $this->defaultView);
-    
-        if (Yii::$app->request->get($this->themeParam)) {
-            $viewName = Yii::$app->request->get($this->themeParam) . '/' . $viewName;
+        $viewName = \Yii::$app->request->get($this->viewParam, $this->defaultView);
+
+        $this->theme = \Yii::$app->request->get($this->themeParam, '');
+        if ($this->theme) {
+            $viewName = $this->theme . '/' . $viewName;
         }
     
         if (!is_string($viewName) || !preg_match('~^\w(?:(?!\/\.{0,2}\/)[\w\/\-\.])*$~', $viewName)) {
             if (YII_DEBUG) {
                 throw new NotFoundHttpException("The requested view \"$viewName\" must start with a word character, must not contain /../ or /./, can contain only word characters, forward slashes, dots and dashes.");
             }
-        
-            throw new NotFoundHttpException(Yii::t('yii', 'The requested route "{name}" was not found.', ['name' => $viewName]));
+
+            throw new NotFoundHttpException(\Yii::t('yii', 'The requested route "{name}" was not found.', ['name' => $viewName]));
         }
     
         return empty($this->viewPrefix) ? $viewName : $this->viewPrefix . '/' . $viewName;
