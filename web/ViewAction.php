@@ -11,7 +11,6 @@ namespace deitsolutions\pages\web;
 use yii\web\ViewAction as Action;
 use yii\web\NotFoundHttpException;
 
-
 /**
  * {@inheritdoc}
  */
@@ -25,7 +24,12 @@ class ViewAction extends Action
     /**
      * @var string theme name used
      */
-    public $theme = '';
+    public $themeName = '';
+    
+    /**
+     * @var string view name used
+     */
+    public $viewName = '';
     
     /**
      * Resolves the view name currently being requested.
@@ -36,11 +40,14 @@ class ViewAction extends Action
      */
     protected function resolveViewName()
     {
-        $viewName = \Yii::$app->request->get($this->viewParam, $this->defaultView);
-
-        $this->theme = \Yii::$app->request->get($this->themeParam, '');
-        if ($this->theme) {
-            $viewName = $this->theme . '/' . $viewName;
+        $this->viewName = \Yii::$app->request->get($this->viewParam, $this->defaultView);
+    
+        $this->themeName = \Yii::$app->request->get($this->themeParam, '');
+    
+        if ($this->themeName) {
+            $viewName = $this->themeName . '/' . $this->viewName;
+        } else {
+            $viewName = $this->viewName;
         }
     
         if (!is_string($viewName) || !preg_match('~^\w(?:(?!\/\.{0,2}\/)[\w\/\-\.])*$~', $viewName)) {
@@ -53,5 +60,4 @@ class ViewAction extends Action
     
         return empty($this->viewPrefix) ? $viewName : $this->viewPrefix . '/' . $viewName;
     }
-    
 }
