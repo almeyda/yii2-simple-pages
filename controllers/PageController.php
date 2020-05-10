@@ -1,13 +1,13 @@
 <?php
 /**
- * @link https://github.com/deitsolutions/yii2-simple-pages
- * @copyright Copyright (c) 2018 Almeyda LLC
+ * @link https://github.com/solutlux/yii2-simple-pages
+ * @copyright Copyright (c) 2018 Solutlux LLC
  *
  * The full copyright and license information is stored the LICENSE
  * file distributed with this source code.
  */
 
-namespace deitsolutions\pages\controllers;
+namespace solutlux\pages\controllers;
 
 use yii\web\Controller;
 
@@ -25,7 +25,7 @@ class PageController extends Controller
     {
         return [
             'page' => [
-                'class' => 'deitsolutions\pages\web\ViewAction',
+                'class' => 'solutlux\pages\web\ViewAction',
             ],
         ];
     }
