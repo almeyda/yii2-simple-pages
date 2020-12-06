@@ -1,18 +1,16 @@
 {
-    "name": "solutlux/yii2-simple-pages",
+    "name": "almeyda/yii2-simple-pages",
     "description": "basic yii2 extension to create sites with simple set of pages",
     "keywords": [
         "yii2",
         "page"
     ],
     "type": "yii2-extension",
-    "homepage": "https://github.com/solutlux/yii2-simple-pages",
     "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Dmitriy Evdokimov",
-            "email": "dmitriy@solutlux.com",
-            "homepage": "https://solutlux.com",
+            "email": "dmitriy@almeydahost.com",
             "role": "Developer"
         }
     ],
@@ -23,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "solutlux\\pages\\": ""
+            "almeyda\\pages\\": ""
         }
     }
 }

@@ -10,7 +10,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Place **composer.phar** file in the same directory with **composer.json** file and run
 
 ```
-$ php composer.phar require solutlux/yii2-simple-pages "*"
+$ php composer.phar require almeyda/yii2-simple-pages "*"
 ```
 
 or add
@@ -20,7 +20,7 @@ or add
     ...
     "require": {
         ...
-        "solutlux/yii2-simple-pages": "*"
+        "almeyda/yii2-simple-pages": "*"
         ...
     }
     ...
@@ -43,7 +43,7 @@ return [
     'modules' => [
         ...
         'pages' => [
-           'class' => 'solutlux\pages\Module',
+           'class' => 'almeyda\pages\Module',
         ],
         ...
     ],
@@ -71,7 +71,7 @@ return [
             'theme' => [
                 'pathMap' => [
                     '@app/views/layouts' => '@app/views/themes/{your-theme}/layouts',
-                    '@solutlux/pages/views/page/pages/blog' => '@app/views/themes/{your-theme}/pages',
+                    '@almeyda/pages/views/page/pages/blog' => '@app/views/themes/{your-theme}/pages',
                     ...
             ],
             ...
@@ -241,7 +241,7 @@ You could follow the next guide if you want to create page with address `yourhos
         ...
         'theme' => [
             'pathMap' => [
-                '@solutlux/pages/views/page/pages' => '@app/views/themes/{your-theme}/common/pages',
+                '@almeyda/pages/views/page/pages' => '@app/views/themes/{your-theme}/common/pages',
                 ...
         ],
         ...
